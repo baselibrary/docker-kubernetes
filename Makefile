@@ -1,23 +1,33 @@
 NAME     = baselibrary/kubernetes
 REPO     = git@github.com:baselibrary/docker-kubernetes.git
-VERSIONS = $(foreach df,$(wildcard */Dockerfile),$(df:%/Dockerfile=%))
+VERSION  = 1.1.2
+
+# input variables
+BUILD_DIR              = build
+ETCD_BINARIES          = etcd etcdctl
+KUBERNETES_BINARIES    = km kubectl
 
 all: build
 
-build: $(VERSIONS)
-
-release: $(VERSIONS)
+build: $(BUILD_DIR)
+	
+release:
 	docker push ${NAME}
 
 update:
 	docker run --rm -v $$(pwd):/work -w /work buildpack-deps ./update.sh
 
-branches:
-	git fetch $(REPO) master
-	@$(foreach tag, $(VERSIONS), git branch -f $(tag) FETCH_HEAD;)
-	@$(foreach tag, $(VERSIONS), git push $(REPO) $(tag);)
-	@$(foreach tag, $(VERSIONS), git branch -D $(tag);)
+.PHONY: all clone build 	
+$(ETCD_BINARIES):
+	@cd $(BUILD_DIR)/etcd && GOOS=linux GOARCH=amd64 ./build
+	@cp -pv $(addprefix $(BUILD_DIR)/etcd/bin/, $(ETCD_BINARIES)) .
+$(KUBERNETES_BINARIES):
+	@cd $(BUILD_DIR)/kubernetes && GOOS=linux GOARCH=amd64 KUBERNETES_CONTRIB=mesos ./hack/build-cross.sh
+	@cp -pv $(addprefix $(BUILD_DIR)/kubernetes/_output/local/bin/linux/amd64/, $(KUBERNETES_BINARIES)) .
+$(BUILD_DIR): $(ETCD_BINARIES) $(KUBERNETES_BINARIES)
+	docker build --rm -t $(NAME):$(VERSION) .
+	
+	
 
-.PHONY: all build library $(VERSIONS)
-$(VERSIONS):
-	docker build --rm -t $(NAME):$@ $@
+	
+

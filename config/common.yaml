@@ -1,0 +1,53 @@
+exec: [ "/usr/bin/supervisord", "-n" ]
+data_sources: [ 'defaults', 'file', 'environment' ]
+template_sources: [ file ]
+defaults:
+  global:
+    env_k8sm_http_client_timeout: '5s'
+    env_k8sm_state_cache_ttl: '20s'
+    env_k8sm_dns_server: '10.10.10.10'
+    env_k8sm_dns_domain: 'cluster.local'
+
+environments:
+  staging:
+    bootstrap.sh.erb:
+      target: /usr/local/bin/bootstrap.sh
+      user: root
+      group: root
+      perms: 0755
+    cloud.cfg.erb:
+      target: /var/lib/kubernetes/cloud.cfg
+    kube-dns-rc.yaml.erb:
+      target: /var/lib/kubernetes/kube-dns-rc.yaml
+    kube-dns-svc.yaml.erb:
+      target: /var/lib/kubernetes/kube-dns-svc.yaml
+    supervisord.conf.erb:
+      target: /etc/supervisor/conf.d/supervisord.conf
+  production:
+    bootstrap.sh.erb:
+      target: /usr/local/bin/bootstrap.sh
+      user: root
+      group: root
+      perms: 0755
+    cloud.cfg.erb:
+      target: /var/lib/kubernetes/cloud.cfg
+    kube-dns-rc.yaml.erb:
+      target: /var/lib/kubernetes/kube-dns-rc.yaml
+    kube-dns-svc.yaml.erb:
+      target: /var/lib/kubernetes/kube-dns-svc.yaml
+    supervisord.conf.erb:
+      target: /etc/supervisor/conf.d/supervisord.conf
+  development:
+    bootstrap.sh.erb:
+      target: /usr/local/bin/bootstrap.sh
+      user: root
+      group: root
+      perms: 0755
+    cloud.cfg.erb:
+      target: /var/lib/kubernetes/cloud.cfg
+    kube-dns-rc.yaml.erb:
+      target: /var/lib/kubernetes/kube-dns-rc.yaml
+    kube-dns-svc.yaml.erb:
+      target: /var/lib/kubernetes/kube-dns-svc.yaml
+    supervisord.conf.erb:
+      target: /etc/supervisor/conf.d/supervisord.conf

@@ -1,0 +1,99 @@
+[supervisord]
+nodaemon=true
+
+[program:etcd]
+autorestart             = true
+autostart               = true
+stdout_logfile          = /dev/stdout
+stdout_logfile_maxbytes = 0
+stderr_logfile          = /dev/stderr
+stderr_logfile_maxbytes = 0
+priority                = 1
+command                 = /usr/bin/etcd 
+                            --name=<%= env_hostname %>
+                            --data-dir=/var/lib/kubernetes/etcd
+                            --listen-peer-urls=http://127.0.0.1:2380
+                            --listen-client-urls=http://127.0.0.1:2379,http://<%= env_host %>:4001
+                            --initial-advertise-peer-urls=http://127.0.0.1:2380
+                            --initial-cluster=<%= env_hostname %>=http://127.0.0.1:2380
+                            --advertise-client-urls=http://127.0.0.1:2379,http://<%= env_host %>:4001
+
+[program:apiserver]
+autorestart             = true
+autostart               = true
+stdout_logfile          = /dev/stdout
+stdout_logfile_maxbytes = 0
+stderr_logfile          = /dev/stderr
+stderr_logfile_maxbytes = 0
+priority                = 2
+command                 = /usr/bin/km apiserver 
+                            --bind-address=<%= env_host %>
+                            --cloud-config=/var/lib/kubernetes/cloud.cfg
+                            --cloud-provider=mesos
+                            --cluster-name=kubernetes
+                            --insecure-bind-address=<%= env_host %>
+                            --insecure-port=8080
+                            --etcd-servers=http://127.0.0.1:2379
+                            --service-cluster-ip-range=10.10.10.0/24
+
+[program:controller-manager]
+autorestart             = true
+autostart               = true
+stdout_logfile          = /dev/stdout
+stdout_logfile_maxbytes = 0
+stderr_logfile          = /dev/stderr
+stderr_logfile_maxbytes = 0
+priority                = 3
+command                 = /usr/bin/km controller-manager 
+                            --address=<%= env_host %>
+                            --cloud-config=/var/lib/kubernetes/cloud.cfg
+                            --cloud-provider=mesos
+                            --cluster-name=kubernetes
+                            --master=http://<%= env_host %>:8080
+
+[program:scheduler]
+autorestart             = true
+autostart               = true
+stdout_logfile          = /dev/stdout
+stdout_logfile_maxbytes = 0
+stderr_logfile          = /dev/stderr
+stderr_logfile_maxbytes = 0
+priority                = 4
+command                 = /usr/bin/km scheduler 
+                            --address=<%= env_host %>
+                            --api-servers=http://<%= env_host %>:8080
+                            --driver-port=25501
+                            --service-address=10.10.10.9
+                            --etcd-servers=http://127.0.0.1:2379
+                            --framework-name=kubernetes
+                            --framework-weburi=http://<%= env_host %>:8080
+                            --mesos-master=<%= env_k8sm_mesos_master %>
+                            --mesos-role=*
+                            --mesos-user=root
+                            --mesos-cgroup-prefix=/mesos
+                            --cluster-dns=10.10.10.10 
+                            --cluster-domain=cluster.local
+
+[program:kubedns]
+autorestart             = false
+autostart               = true
+stdout_logfile          = /dev/stdout
+stdout_logfile_maxbytes = 0
+stderr_logfile          = /dev/stderr
+stderr_logfile_maxbytes = 0
+priority                = 5
+command                 = bootstrap.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
