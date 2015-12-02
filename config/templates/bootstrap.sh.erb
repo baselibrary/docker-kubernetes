@@ -2,5 +2,5 @@ export KUBERNETES_MASTER=http://<%= env_host %>:8080
 
 /usr/bin/kubectl get rc --namespace=kube-system -l k8s-app=kube-dns | grep kube-dns >/dev/null && /usr/bin/kubectl get service --namespace=kube-system kube-dns >/dev/null && touch kill && exit 0
 
-/usr/bin/kubectl create -f /var/lib/kubernetes/skydns-rc.yaml
-/usr/bin/kubectl create -f /var/lib/kubernetes/skydns-svc.yaml
+/usr/bin/kubectl create -f /var/lib/kubernetes/kube-dns-rc.yaml
+/usr/bin/kubectl create -f /var/lib/kubernetes/kube-dns-svc.yaml

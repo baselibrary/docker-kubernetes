@@ -61,9 +61,7 @@ stderr_logfile_maxbytes = 0
 priority                = 4
 command                 = /usr/bin/km scheduler 
                             --address=<%= env_host %>
-                            --api-servers=http://<%= env_host %>:8080
-                            --driver-port=25501
-                            --service-address=10.10.10.9
+                            --api-servers=<%= env_host %>:8080
                             --etcd-servers=http://127.0.0.1:2379
                             --framework-name=kubernetes
                             --framework-weburi=http://<%= env_host %>:8080
