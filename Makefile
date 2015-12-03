@@ -22,7 +22,7 @@ $(ETCD_BINARIES):
 	@cd $(BUILD_DIR)/etcd && GOOS=linux GOARCH=amd64 ./build
 	@cp -pv $(addprefix $(BUILD_DIR)/etcd/bin/, $(ETCD_BINARIES)) .
 $(KUBERNETES_BINARIES):
-	@cd $(BUILD_DIR)/kubernetes && GOOS=linux GOARCH=amd64 KUBERNETES_CONTRIB=mesos ./hack/build-cross.sh
+	@cd $(BUILD_DIR)/kubernetes && KUBE_BUILD_PLATFORMS=linux/amd64 KUBERNETES_CONTRIB=mesos make release-skip-tests
 	@cp -pv $(addprefix $(BUILD_DIR)/kubernetes/_output/local/bin/linux/amd64/, $(KUBERNETES_BINARIES)) .
 $(BUILD_DIR): $(ETCD_BINARIES) $(KUBERNETES_BINARIES)
 	docker build --rm -t $(NAME):$(VERSION) .
