@@ -21,10 +21,10 @@ environments:
       target: /var/lib/kubernetes/kube-dns-rc.yaml
     kube-dns-svc.yaml.erb:
       target: /var/lib/kubernetes/kube-dns-svc.yaml
-    kube-gclb-rc.yaml.erb:
-      target: /var/lib/kubernetes/kube-gclb-rc.yaml
-    kube-gclb-svc.yaml.erb:
-      target: /var/lib/kubernetes/kube-gclb-svc.yaml
+    kube-glbc-rc.yaml.erb:
+      target: /var/lib/kubernetes/kube-glbc-rc.yaml
+    kube-glbc-svc.yaml.erb:
+      target: /var/lib/kubernetes/kube-glbc-svc.yaml
     kube-ui-rc.yaml.erb:
       target: /var/lib/kubernetes/kube-ui-rc.yaml
     kube-ui-svc.yaml.erb:
@@ -43,10 +43,10 @@ environments:
       target: /var/lib/kubernetes/kube-dns-rc.yaml
     kube-dns-svc.yaml.erb:
       target: /var/lib/kubernetes/kube-dns-svc.yaml
-    kube-gclb-rc.yaml.erb:
-      target: /var/lib/kubernetes/kube-gclb-rc.yaml
-    kube-gclb-svc.yaml.erb:
-      target: /var/lib/kubernetes/kube-gclb-svc.yaml
+    kube-glbc-rc.yaml.erb:
+      target: /var/lib/kubernetes/kube-glbc-rc.yaml
+    kube-glbc-svc.yaml.erb:
+      target: /var/lib/kubernetes/kube-glbc-svc.yaml
     kube-ui-rc.yaml.erb:
       target: /var/lib/kubernetes/kube-ui-rc.yaml
     kube-ui-svc.yaml.erb:
@@ -65,10 +65,10 @@ environments:
       target: /var/lib/kubernetes/kube-dns-rc.yaml
     kube-dns-svc.yaml.erb:
       target: /var/lib/kubernetes/kube-dns-svc.yaml
-    kube-gclb-rc.yaml.erb:
-      target: /var/lib/kubernetes/kube-gclb-rc.yaml
-    kube-gclb-svc.yaml.erb:
-      target: /var/lib/kubernetes/kube-gclb-svc.yaml
+    kube-glbc-rc.yaml.erb:
+      target: /var/lib/kubernetes/kube-glbc-rc.yaml
+    kube-glbc-svc.yaml.erb:
+      target: /var/lib/kubernetes/kube-glbc-svc.yaml
     kube-ui-rc.yaml.erb:
       target: /var/lib/kubernetes/kube-ui-rc.yaml
     kube-ui-svc.yaml.erb:
