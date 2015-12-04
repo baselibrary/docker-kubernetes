@@ -5,6 +5,11 @@ export KUBERNETES_MASTER=http://<%= env_host %>:8080
 /usr/bin/kubectl create -f /var/lib/kubernetes/kube-dns-rc.yaml
 /usr/bin/kubectl create -f /var/lib/kubernetes/kube-dns-svc.yaml
 
+/usr/bin/kubectl get rc --namespace=kube-system -l k8s-app=glbc | grep glbc >/dev/null && /usr/bin/kubectl get service --namespace=kube-system glbc >/dev/null && touch kill && exit 0
+
+/usr/bin/kubectl create -f /var/lib/kubernetes/kube-glbc-rc.yaml
+/usr/bin/kubectl create -f /var/lib/kubernetes/kube-glbc-svc.yaml
+
 /usr/bin/kubectl get rc --namespace=kube-system -l k8s-app=kube-ui | grep kube-ui >/dev/null && /usr/bin/kubectl get service --namespace=kube-system kube-ui >/dev/null && touch kill && exit 0
 
 /usr/bin/kubectl create -f /var/lib/kubernetes/kube-ui-rc.yaml
