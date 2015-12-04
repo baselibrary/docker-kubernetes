@@ -69,8 +69,8 @@ command                 = /usr/bin/km scheduler
                             --mesos-role=*
                             --mesos-user=root
                             --mesos-cgroup-prefix=/mesos
-                            --cluster-dns=10.10.10.10 
-                            --cluster-domain=cluster.local
+                            --cluster-dns=<%= env_k8sm_dns_server %> 
+                            --cluster-domain=<%= env_k8sm_dns_domain %>
 
 [program:kubedns]
 autorestart             = false

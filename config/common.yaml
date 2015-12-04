@@ -21,6 +21,10 @@ environments:
       target: /var/lib/kubernetes/kube-dns-rc.yaml
     kube-dns-svc.yaml.erb:
       target: /var/lib/kubernetes/kube-dns-svc.yaml
+    kube-ui-rc.yaml.erb:
+      target: /var/lib/kubernetes/kube-ui-rc.yaml
+    kube-ui-svc.yaml.erb:
+      target: /var/lib/kubernetes/kube-ui-svc.yaml
     supervisord.conf.erb:
       target: /etc/supervisor/conf.d/supervisord.conf
   production:
@@ -35,6 +39,10 @@ environments:
       target: /var/lib/kubernetes/kube-dns-rc.yaml
     kube-dns-svc.yaml.erb:
       target: /var/lib/kubernetes/kube-dns-svc.yaml
+    kube-ui-rc.yaml.erb:
+      target: /var/lib/kubernetes/kube-ui-rc.yaml
+    kube-ui-svc.yaml.erb:
+      target: /var/lib/kubernetes/kube-ui-svc.yaml
     supervisord.conf.erb:
       target: /etc/supervisor/conf.d/supervisord.conf
   development:
@@ -49,5 +57,9 @@ environments:
       target: /var/lib/kubernetes/kube-dns-rc.yaml
     kube-dns-svc.yaml.erb:
       target: /var/lib/kubernetes/kube-dns-svc.yaml
+    kube-ui-rc.yaml.erb:
+      target: /var/lib/kubernetes/kube-ui-rc.yaml
+    kube-ui-svc.yaml.erb:
+      target: /var/lib/kubernetes/kube-ui-svc.yaml
     supervisord.conf.erb:
       target: /etc/supervisor/conf.d/supervisord.conf
