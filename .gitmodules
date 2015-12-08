@@ -1,3 +1,6 @@
 [submodule "build/etcd"]
 	path = build/etcd
 	url = https://github.com/coreos/etcd.git
+[submodule "build/kubernetes"]
+	path = build/kubernetes
+	url = https://github.com/mesosphere/kubernetes.git
