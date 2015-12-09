@@ -7,6 +7,11 @@ defaults:
     env_k8sm_state_cache_ttl: '20s'
     env_k8sm_dns_server: '10.10.10.10'
     env_k8sm_dns_domain: 'cluster.local'
+    env_k8sm_mesos_executor_cpus: '0.25'
+    env_k8sm_mesos_executor_mem: '256'
+    env_k8sm_default_container_cpu_limit: '0.25'
+    env_k8sm_default_container_mem_limit: '128'
+    env_k8sm_proxy_mode: 'iptables'
 
 environments:
   staging:

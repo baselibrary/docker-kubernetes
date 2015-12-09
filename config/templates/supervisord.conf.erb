@@ -69,6 +69,11 @@ command                 = /usr/bin/km scheduler
                             --mesos-role=*
                             --mesos-user=root
                             --mesos-cgroup-prefix=/mesos
+                            --mesos-executor-cpus=<%= env_k8sm_mesos_executor_cpus %>
+                            --mesos-executor-mem=<%= env_k8sm_mesos_executor_mem %>
+                            --default-container-cpu-limit=<%= env_k8sm_default_container_cpu_limit %>
+                            --default-container-mem-limit=<%= env_k8sm_default_container_mem_limit %>
+                            --proxy-mode=<%= env_k8sm_proxy_mode %>
                             --cluster-dns=<%= env_k8sm_dns_server %> 
                             --cluster-domain=<%= env_k8sm_dns_domain %>
 
