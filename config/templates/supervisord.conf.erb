@@ -66,7 +66,6 @@ command                 = /usr/bin/km scheduler
                             --framework-name=kubernetes
                             --framework-weburi=http://<%= env_host %>:8080
                             --mesos-master=<%= env_k8sm_mesos_master %>
-                            --mesos-role=*
                             --mesos-user=root
                             --mesos-cgroup-prefix=/mesos
                             --mesos-executor-cpus=<%= env_k8sm_mesos_executor_cpus %>
