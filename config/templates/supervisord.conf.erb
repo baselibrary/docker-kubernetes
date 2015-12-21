@@ -35,8 +35,7 @@ command                 = /usr/bin/km apiserver
                             --insecure-port=8080
                             --etcd-servers=http://127.0.0.1:2379
                             --service-cluster-ip-range=10.10.10.0/24
-                            --admission-control=NamespaceLifecycle,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota
-
+                           
 [program:controller-manager]
 autorestart             = true
 autostart               = true
